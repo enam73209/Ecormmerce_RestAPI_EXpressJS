@@ -4,6 +4,7 @@ const ProductController = require('../controllers/ProductController');
 const UserController = require('../controllers/UserController');
 const WishListController = require('../controllers/WishListController');
 const CartListController = require('../controllers/CartListController');
+const InvoiceController = require('../controllers/InvoiceController');
 const AuthVerification = require('../middlewares/AuthVerification');
 
 
@@ -39,5 +40,16 @@ router.get('/WishList',AuthVerification,WishListController.WishList);
 router.post('/SaveCartList',AuthVerification,CartListController.SaveCartList);
 router.post('/RemoveCartList',AuthVerification,CartListController.RemoveCartList);
 router.get('/CartList',AuthVerification,CartListController.CartList);
+router.post('/UpdateCartList/:cartID',AuthVerification,CartListController.UpdateCartList)
+
+//Invoice and Payments
+router.get('/CreateInvoice',AuthVerification,InvoiceController.CreateInvoice);
+router.get('/InvoiceList',AuthVerification,InvoiceController.InvoiceList)
+router.get('/InvoiceProductList/:invoice_id',AuthVerification,InvoiceController.InvoiceProductList)
+
+router.post('/PaymentSuccess/:trxID',InvoiceController.PaymentSuccess)
+router.post('/PaymentCancel/:trxID',InvoiceController.PaymentCancel)
+router.post('/PaymentFail/:trxID',InvoiceController.PaymentFail)
+router.post('/PaymentIPN/:trxID',InvoiceController.PaymentIPN)
 
 module.exports = router;
