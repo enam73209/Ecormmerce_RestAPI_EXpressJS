@@ -4,14 +4,14 @@ const ProductController = require('../controllers/ProductController');
 
 
 router.get('/ProductBrandList',ProductController.ProductBrandList);
-router.get('/ProductCategoryList')
-router.get('/ProductSliderList')
-router.get('/ProductListByBrand/:BrandID')
-router.get('/ProductListByCategory/:CategoryID')
-router.get('/ProductListBySmilier/:CategoryID')
-router.get('/ProductListByKeyword/:Keyword')
-router.get('/ProductListByRemark/:Remark')
-router.get('/ProductDetails/:ProductID')
-router.get('/ProductReviewList/:ProductID')
+router.get('/ProductCategoryList',ProductController.ProductCategoryList)
+router.get('/ProductSliderList',ProductController.ProductSliderList)
+router.get('/ProductListByBrand/:BrandID',ProductController.ProductListByBrand)
+router.get('/ProductListByCategory/:CategoryID',ProductController.ProductListByCategory)
+router.get('/ProductListBySimilar/:CategoryID',ProductController.ProductListBySimilar)
+router.get('/ProductListByKeyword/:Keyword',ProductController.ProductListByKeyword)
+router.get('/ProductListByRemark/:Remark',ProductController.ProductListByRemark)
+router.get('/ProductDetails/:ProductID',ProductController.ProductDetails)
+router.get('/ProductReviewList/:ProductID',ProductController.ProductReviewList)
 
 module.exports = router;

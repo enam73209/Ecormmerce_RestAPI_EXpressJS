@@ -123,10 +123,10 @@ const ListByRemarkService = async (req) => {
     }
 }
 
-const ListBySmilierService = async () => {
-
+const ListBySimilarService = async (req) => {
     try {
         let CategoryID=new ObjectId(req.params.CategoryID);
+        console.log(CategoryID);
         let MatchStage={$match:{categoryID:CategoryID}}
         let limitStage={$limit:20}
 
@@ -144,7 +144,7 @@ const ListBySmilierService = async () => {
 
     }
     catch (e) {
-        return {status:"fail",data:e}.toString()
+        return { status: "fail", error: e.message };
     }
 
 }
@@ -230,10 +230,7 @@ const ReviewListService = async (req) => {
         let ProjectionStage= {$project: {'des': 1, 'rating': 1, 'profile.cus_name': 1}}
 
         let data= await  ReviewModel.aggregate([
-            MatchStage,
-            JoinWithProfileStage,
-            UnwindProfileStage,
-            ProjectionStage
+            MatchStage,JoinWithProfileStage,UnwindProfileStage,ProjectionStage
         ])
 
         return {status:"success",data:data}
@@ -256,7 +253,7 @@ module.exports={
     ListByCategoryService,
     ListByBrandService,
     ListByRemarkService,
-    ListBySmilierService,
+    ListBySimilarService,
     ListByKeywordService,
     DetailsService,
     ReviewListService
