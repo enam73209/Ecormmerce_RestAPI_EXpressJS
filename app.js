@@ -7,6 +7,8 @@ app.use(express.json());
 app.use('/api/v1',router);
 
 
+
+
 const bodyParser = require('body-parser');
 //Security Middleware
 const rateLimit = require('express-rate-limit');
@@ -45,6 +47,13 @@ mongoose.connect(url,options).then((res)=>{
     console.log("Successfully connected to Database");
 }).catch((err)=>{
     console.log(err);
+})
+
+
+app.use(express.static('client/dist'));
+//Add react front end routing
+app.get('*',function (req,res){
+    res.sendFile(path.resolve(__dirname,'client','dist','index.html'))
 })
 
 module.exports = app;
